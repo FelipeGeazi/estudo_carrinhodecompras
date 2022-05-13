@@ -1,14 +1,18 @@
 const main = document.createElement("main")
 main.id = "main"
+
 const body = document.querySelector("body")
+
 const listaDeProdutos = document.createElement("ul")
 
 const buttonFinalizar = document.createElement("button")
-buttonFinalizar.innerText = "Finalizar Compra"
+buttonFinalizar.innerHTML = "Finalizar Compra"
+buttonFinalizar.id = "button"
 
 const section = document.createElement("section")
 section.id = "section"
-section.classList.add("section")
+    /* section.classList.add("section") */
+section.className = "section" // 
 
 
 const header = document.createElement("div")
@@ -24,36 +28,40 @@ header.appendChild(itemValor)
 
 
 
-let soma =
 
 
 
 
+const productsList = [{
+        id: 1,
+        name: "Banana",
+        price: 100.99
+    },
+    {
+        id: 2,
+        name: "Caqui",
+        price: 100.99
+    },
+    {
+        id: 3,
+        name: "Beterraba",
+        price: 100.99
+    },
+    {
+        id: 4,
+        name: "Chocolate",
+        price: 100.99
+    }
+]
 
+let soma = 0
+for (let i = 0; i < productsList.length; i++) {
+    soma += productsList[i].price
 
-    const productsList = [{
-            id: 1,
-            name: "Banana",
-            price: 100.99
-        },
-        {
-            id: 2,
-            name: "Caqui",
-            price: 100.99
-        },
-        {
-            id: 3,
-            name: "Beterraba",
-            price: 100.99
-        },
-        {
-            id: 4,
-            name: "Chocolate",
-            price: 100.99
-        }
-    ]
+}
 
-console.log(productsList[1].name)
+/* soma = productsList.reduce((total, item) => total + item.price, 0) */
+
 
 for (let i = 0; i < productsList.length; i++) {
     const item = document.createElement("li")
@@ -83,9 +91,15 @@ for (let i = 0; i < productsList.length; i++) {
 body.appendChild(main)
 main.appendChild(header)
 main.appendChild(listaDeProdutos)
-listaDeProdutos.appendChild(item)
-    /* main.appendChild(section) */
-listaDeProdutos.appendChild(buttonFinalizar)
-main.appendChild(soma)
 
-main.insertAdjacentHTML("beforeend", `<div class=divCabecalho >Texto renderizado pelo JS</div>`);
+main.appendChild(section)
+main.appendChild(buttonFinalizar)
+    /* main.appendChild(soma) */
+
+main.insertAdjacentHTML("beforeend",
+    `<div class="divCabecalho">
+<p>Total</p>
+<p>R$ ${soma}</p>
+</div>`);
+
+main.appendChild(buttonFinalizar)
